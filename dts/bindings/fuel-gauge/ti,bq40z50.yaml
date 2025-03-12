@@ -1,0 +1,10 @@
+# Copyright, Qualcomm Invocation Center.
+
+description: |
+  Texas Instruments BQ40Z50 fuel gauge. For more info visit
+  https://www.ti.com/product/BQ40Z50.
+
+
+compatible: "ti,bq40z50"
+
+include: [i2c-device.yaml, fuel-gauge.yaml]
