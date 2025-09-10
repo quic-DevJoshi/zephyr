@@ -10,6 +10,7 @@
 #include <zephyr/device.h>
 #include <zephyr/kernel.h>
 #include <zephyr/init.h>
+// #include <zephyr/rtio/rtio.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -50,6 +51,7 @@ void sys_trace_idle_exit(void);
 void sys_trace_sys_init_enter(const struct init_entry *entry, int level);
 void sys_trace_sys_init_exit(const struct init_entry *entry, int level, int result);
 
+struct rtio;
 struct gpio_callback;
 typedef uint8_t gpio_pin_t;
 typedef uint32_t gpio_flags_t;
@@ -97,6 +99,7 @@ void sys_trace_gpio_get_pending_int_exit_user(const struct device *dev, int ret)
 void sys_trace_gpio_fire_callbacks_enter_user(sys_slist_t *list, const struct device *port,
 					      gpio_pin_t pins);
 void sys_trace_gpio_fire_callback_user(const struct device *port, struct gpio_callback *callback);
+void sys_trace_rtio_submit_user(const struct rtio *rtio, uint32_t wait_count);
 
 #define sys_port_trace_k_thread_foreach_enter()
 #define sys_port_trace_k_thread_foreach_exit()
@@ -518,6 +521,8 @@ void sys_trace_gpio_fire_callback_user(const struct device *port, struct gpio_ca
 #define sys_port_trace_gpio_fire_callback(port, callback) \
 	sys_trace_gpio_fire_callback_user(port, callback)
 
+#define sys_port_trace_rtio_submit(rtio, wait_count) \
+	sys_trace_rtio_submit_user(rtio, wait_count)
 #ifdef __cplusplus
 }
 #endif

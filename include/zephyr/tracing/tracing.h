@@ -2738,6 +2738,66 @@
 
 /** @} */ /* end of subsys_tracing_apis_gpio */
 
+/**
+ * @brief RTIO Tracing APIs
+ * @defgroup subsys_tracing_apis_rtio RTIO Tracing APIs
+ * @{
+ */
+
+ /**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_submit(rtio, wait_count)
+
+/**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_sqe_acquire(sqe)
+
+/**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_sqe_cancel(sqe)
+
+/**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_cqe_submit()
+
+/**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_cqe_release()
+
+/**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_cqe_consume()
+
+/**
+ * @brief Trace RTIO Submit API
+ * @param rtio @ref RTIO context
+ * @param wait_count @ref Number of submissions to wait for completion of.
+ */
+#define sys_port_trace_rtio_executor_done()
+
+
+/** @} */ /* end of subsys_tracing_apis_rtio */
+
+/** @} */ /* end of subsys_tracing_apis_gpio */
+
 #if defined(CONFIG_PERCEPIO_TRACERECORDER)
 #include "tracing_tracerecorder.h"
 

@@ -457,6 +457,9 @@ struct rtio {
 
 	/* Completion queue */
 	struct mpsc cq;
+
+	/* RTIO name for Tracing */
+	char* _name;
 };
 
 /** The memory partition associated with all RTIO context information */
@@ -948,6 +951,7 @@ static inline void rtio_block_pool_free(struct rtio *r, void *buf, uint32_t buf_
 		IF_ENABLED(CONFIG_RTIO_SYS_MEM_BLOCKS, (.block_pool = _block_pool,))               \
 		.sq = MPSC_INIT((name.sq)),                                                        \
 		.cq = MPSC_INIT((name.cq)),                                                        \
+		._name = #name,									   \
 	}
 
 /**
@@ -1686,6 +1690,7 @@ static inline int z_impl_rtio_submit(struct rtio *r, uint32_t wait_count)
 		r->submit_count = wait_count;
 	}
 
+	sys_port_trace_rtio_submit(r, wait_count);
 	rtio_executor_submit(r);
 
 	if (wait_count > 0) {
@@ -1705,6 +1710,7 @@ static inline int z_impl_rtio_submit(struct rtio *r, uint32_t wait_count)
 	uintptr_t cq_complete_count = cq_count + wait_count;
 	bool wraps = cq_complete_count < cq_count;
 
+	sys_port_trace_rtio_submit(r, wait_count);
 	rtio_executor_submit(r);
 
 	if (wraps) {
