@@ -518,6 +518,11 @@ void sys_trace_gpio_fire_callback_user(const struct device *port, struct gpio_ca
 #define sys_port_trace_gpio_fire_callback(port, callback) \
 	sys_trace_gpio_fire_callback_user(port, callback)
 
+#define sys_trace_enable() sys_trace_enable_user()
+
+#define sys_trace_disable() sys_trace_disable_user()
+
+#define sys_trace_is_enabled() sys_trace_is_enabled_user()
 #ifdef __cplusplus
 }
 #endif

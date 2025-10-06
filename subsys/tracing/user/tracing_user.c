@@ -10,6 +10,8 @@
 #include <zephyr/debug/cpu_load.h>
 #include <zephyr/init.h>
 
+bool tracing_state_enabled = false;
+
 void __weak sys_trace_thread_create_user(struct k_thread *thread) {}
 void __weak sys_trace_thread_abort_user(struct k_thread *thread) {}
 void __weak sys_trace_thread_suspend_user(struct k_thread *thread) {}
@@ -313,4 +315,19 @@ void sys_trace_gpio_fire_callbacks_enter(sys_slist_t *list, const struct device 
 void sys_trace_gpio_fire_callback(const struct device *port, struct gpio_callback *callback)
 {
 	sys_trace_gpio_fire_callback_user(port, callback);
+}
+
+void sys_trace_enable_user(void)
+{
+	tracing_state_enabled = true;
+}
+
+void sys_trace_disable_user(void)
+{
+	tracing_state_enabled = false;
+}
+
+bool sys_trace_is_enabled_user(void)
+{
+	return tracing_state_enabled;
 }

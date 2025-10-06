@@ -2738,6 +2738,12 @@
 
 /** @} */ /* end of subsys_tracing_apis_gpio */
 
+#define sys_trace_enable_trace()
+
+#define sys_trace_disable()
+
+#define sys_trace_is_enabled()
+
 #if defined(CONFIG_PERCEPIO_TRACERECORDER)
 #include "tracing_tracerecorder.h"
 
